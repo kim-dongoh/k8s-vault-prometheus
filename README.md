@@ -15,3 +15,9 @@ kubectl create secret generic ent-license --from-literal="license=${secret}"
 ```
 kubectl apply -f storageclass.yaml
 ```
+
+### 3. PersistentVolume 생성
+```
+kubectl apply -f persistentvolume.yaml
+```
+* On-Prem 환경의 k8s에서 사용이 가능하도록 Local Storage PV 생성
