@@ -1,0 +1,18 @@
+global:
+  enabled: true
+  tlsDisable: true
+
+server:
+  image:
+    repository: "hashicorp/vault-enterprise"
+    tag: "1.12.1-ent"
+  enterpriseLicense:
+    secretName: ent-license
+  ha:
+    enabled: true
+    # default 값이 3개
+    replicas: 3
+    raft:
+      enabled: true
+  volumes:
+
