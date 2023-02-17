@@ -5,13 +5,13 @@ metadata:
   name: local-pv-1
 spec:
   capacity:
-    storage: 10Gi
+    storage: 20Gi
   accessModes:
   - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local-storage
   local:
-    path: /tmp
+    path: /vault/data
   nodeAffinity:
     required:
       nodeSelectorTerms:
@@ -27,13 +27,13 @@ metadata:
   name: local-pv-2
 spec:
   capacity:
-    storage: 10Gi
+    storage: 20Gi
   accessModes:
   - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local-storage
   local:
-    path: /tmp
+    path: /vault/data
   nodeAffinity:
     required:
       nodeSelectorTerms:
@@ -49,13 +49,13 @@ metadata:
   name: local-pv-3
 spec:
   capacity:
-    storage: 10Gi
+    storage: 20Gi
   accessModes:
   - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local-storage
   local:
-    path: /tmp
+    path: /vault/data
   nodeAffinity:
     required:
       nodeSelectorTerms:

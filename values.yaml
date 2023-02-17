@@ -14,5 +14,8 @@ server:
     replicas: 3
     raft:
       enabled: true
-  volumes:
-
+  dataStorage:
+    enabled: true
+    size: 10Gi
+    storageClass: local-storage
+    mountPath: /vault/data
