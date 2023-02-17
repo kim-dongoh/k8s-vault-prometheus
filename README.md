@@ -32,3 +32,14 @@ kubectl apply -f ./yaml/persistentvolume.yaml
 ```
 * On-Prem 환경의 k8s에서 사용이 가능하도록 Local Storage PV 생성
 * Node 수량만큼 PV 생성
+
+### 4. Helm을 통한 Vault Install
+```
+helm repo add hashicorp https://helm.releases.hashicorp.com
+```
+```
+helm install vault hashicorp/vault -f values.yaml
+```
+```
+helm list
+```
