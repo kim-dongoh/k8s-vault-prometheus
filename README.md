@@ -13,12 +13,12 @@ kubectl create secret generic ent-license --from-literal="license=${secret}"
 
 ### 2. StorageClass 생성
 ```
-kubectl apply -f storageclass.yaml
+kubectl apply -f ./yaml/storageclass.yaml
 ```
 
 ### 3. PersistentVolume 생성
 ```
-kubectl apply -f persistentvolume.yaml
+kubectl apply -f ./yaml/persistentvolume.yaml
 ```
 ```
 ---
@@ -92,3 +92,8 @@ spec:
 * Node 수량만큼 pV 생성
 * `spec.local.path`: 데이터가 저장될 디렉토리
 * `spec.nodeAffinity.required.nodeSelectorTerms.matchExpressions.values`: Storage를 할당할 Node의 hostname
+
+### 4. PersistentVolumeClaim 생성
+```
+kubectl ./yaml/persistentvolumeclaim.yaml
+```
