@@ -1,0 +1,15 @@
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: prometheus-volume2
+  labels:
+    type: local
+spec:
+  storageClassName: vault-storage
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt"
