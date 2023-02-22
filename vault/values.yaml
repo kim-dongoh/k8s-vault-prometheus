@@ -1,6 +1,8 @@
 global:
   enabled: true
   tlsDisable: true
+  serverTelemetry:
+    prometheusOperator: true
 
 server:
   image:
@@ -10,10 +12,22 @@ server:
     secretName: ent-license
   ha:
     enabled: true
-    # default 값이 3개
     replicas: 3
     raft:
       enabled: true
+    config: |
+      listener "tcp" {
+        tls_disable = 1
+        address     = "0.0.0.0:8200"
+        telemetry {
+          unauthenticated_metrics_access = "true"
+        }
+      }
+
+      telemetry {
+        prometheus_retention_time = "30s",
+        disable_hostname = true
+      }
   dataStorage:
     enabled: true
     size: 10Gi

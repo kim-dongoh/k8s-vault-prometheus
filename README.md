@@ -7,13 +7,13 @@
 ## Install
 ### 1. License Secret 생성
 ```
-secret=$(cat ./license/tmp-license.hclic)
+secret=$(cat ./vault/license/tmp-license.hclic)
 kubectl create secret generic ent-license --from-literal="license=${secret}"
 ```
 
 ### 2. StorageClass 생성
 ```
-kubectl apply -f ./yaml/storageclass.yaml
+kubectl apply -f ./vault/storageclass.yaml
 ```
 
 ### 3. PersistentVolume 생성
@@ -28,7 +28,7 @@ chmod 777 -R /vault
 
 #### 3.2. PersistentVolume 생성 및 실행
 ```
-kubectl apply -f ./yaml/persistentvolume.yaml
+kubectl apply -f ./vault/persistentvolume.yaml
 ```
 * On-Prem 환경의 k8s에서 사용이 가능하도록 Local Storage PV 생성
 * Node 수량만큼 PV 생성
@@ -38,7 +38,7 @@ kubectl apply -f ./yaml/persistentvolume.yaml
 helm repo add hashicorp https://helm.releases.hashicorp.com
 ```
 ```
-helm install vault hashicorp/vault -f values.yaml
+helm install vault hashicorp/vault -f ./vault/values.yaml
 ```
 ```
 helm list
