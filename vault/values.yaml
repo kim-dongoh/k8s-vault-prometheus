@@ -15,19 +15,31 @@ server:
     replicas: 3
     raft:
       enabled: true
-    config: |
-      listener "tcp" {
-        tls_disable = 1
-        address     = "0.0.0.0:8200"
-        telemetry {
-          unauthenticated_metrics_access = "true"
+      config: |
+        listener "tcp" {
+          tls_disable = true
+          address     = "0.0.0.0:8200"
+          cluster_address = "0.0.0.0:8201"
+          telemetry {
+            unauthenticated_metrics_access = "true"
+          }
         }
-      }
-
-      telemetry {
-        prometheus_retention_time = "30s",
-        disable_hostname = true
-      }
+        telemetry {
+          prometheus_retention_time = "12h",
+          disable_hostname = true
+        }
+        storage "raft" {
+          path = "/vault/data"
+          retry_join {
+            leader_api_addr = "http://vault-0.vault-internal:8200"
+          }
+          retry_join {
+            leader_api_addr = "http://vault-1.vault-internal:8200"
+          }
+          retry_join {
+            leader_api_addr = "http://vault-2.vault-internal:8200"
+          }
+        }
   dataStorage:
     enabled: true
     size: 10Gi
