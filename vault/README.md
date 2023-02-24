@@ -1,19 +1,14 @@
-# k8s-vault-prometheus
-## Prerequisite
-* k8s Cluster
-  * 3 Node 이상 구성
-* Helm
-
+# vault
 ## Install
 ### 1. License Secret 생성
 ```
-secret=$(cat ./vault/license/tmp-license.hclic)
+secret=$(cat ./license/tmp-license.hclic)
 kubectl create secret generic ent-license --from-literal="license=${secret}"
 ```
 
 ### 2. StorageClass 생성
 ```
-kubectl apply -f ./vault/storageclass.yaml
+kubectl apply -f storageclass.yaml
 ```
 
 ### 3. PersistentVolume 생성
@@ -28,7 +23,7 @@ chmod 777 -R /vault
 
 #### 3.2. PersistentVolume 생성 및 실행
 ```
-kubectl apply -f ./vault/persistentvolume.yaml
+kubectl apply -f persistentvolume.yaml
 ```
 * On-Prem 환경의 k8s에서 사용이 가능하도록 Local Storage PV 생성
 * Node 수량만큼 PV 생성
@@ -38,7 +33,7 @@ kubectl apply -f ./vault/persistentvolume.yaml
 helm repo add hashicorp https://helm.releases.hashicorp.com
 ```
 ```
-helm install vault hashicorp/vault -f ./vault/values.yaml
+helm install vault hashicorp/vault -f values.yaml
 ```
 ```
 helm list
@@ -65,9 +60,6 @@ vault-1 Pod 접속
 kubectl exec -it vault-1 sh
 ```
 ```
-vault operator raft join http://vault-0.vault-internal:8200
-```
-```
 vault operator unseal <Unseal Key 입력>
 ```
 ```
@@ -77,9 +69,6 @@ vault login <Token 입력>
 vault-2 Pod 접속
 ```
 kubectl exec -it vault-2 sh
-```
-```
-vault operator raft join http://vault-0.vault-internal:8200
 ```
 ```
 vault operator unseal <Unseal Key 입력>
