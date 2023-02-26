@@ -14,10 +14,10 @@ kubectl apply -f storageclass.yaml
 ### 3. PersistentVolume 생성
 #### 3.1. Worker Node의 볼륨 생성
 ```
-mkdir -p /vault/data
+sudo mkdir -p /vault/data
 ```
 ```
-chmod 777 -R /vault
+sudo chmod 777 -R /vault
 ```
 * Pod가 생성될 Worker Node 3대에서 각각 실행
 
