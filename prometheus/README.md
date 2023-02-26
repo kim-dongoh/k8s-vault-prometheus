@@ -29,10 +29,10 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm install prometheus prometheus-community/prometheus -f values.yaml
 ```
 * `values.yaml` 파일 경로
-** `git clone https://github.com/prometheus-community/helm-charts`
-** `cd helm-charts/charts/prometheus`
+  * `git clone https://github.com/prometheus-community/helm-charts`
+  * `cd helm-charts/charts/prometheus`
 * `serverFiles.prometheus.yml.scrape_configs`에 `job_name: vault` 추가
-** `static_configs`의 `targets` 항목에 `vault` 서비스의 IP:PORT 지정
+  * `static_configs`의 `targets` 항목에 `vault` 서비스의 IP:PORT 지정
 ```
 helm list
 ```
